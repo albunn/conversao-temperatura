@@ -1,0 +1,35 @@
+#Deployment do controle-temperatura
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-temperatura
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web-temperatura
+  template:
+    metadata:
+      labels:
+        app: web-temperatura
+    spec:
+      containers:
+        - name: web-temperatura
+          image: alexandrebunn/controle-temperatura:v1
+          ports:
+            - containerPort: 8080
+---
+#Service do controle-temperatura
+apiVersion: v1
+kind: Service
+metadata:
+  name: web-temperatura
+spec:
+  selector:
+    app: web-temperatura
+  ports:
+    - port: 80
+      targetPort: 8080
+      NodePort: 30000
+      protocol: TCP
+  type: NodePort
