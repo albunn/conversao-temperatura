@@ -1,4 +1,4 @@
-#Deployment do controle-temperatura
+#Deployment do conversao-temperatura
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -15,11 +15,11 @@ spec:
     spec:
       containers:
         - name: web-temperatura
-          image: alexandrebunn/controle-temperatura:v1
+          image: alexandrebunn/conversao-temperatura:v1
           ports:
             - containerPort: 8080
 ---
-#Service do controle-temperatura
+#Service do conversao-temperatura
 apiVersion: v1
 kind: Service
 metadata:
